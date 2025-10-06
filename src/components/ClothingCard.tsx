@@ -42,7 +42,13 @@ export function ClothingCard({
           <Button className="flex-1" onClick={onReload} disabled={isReloading}>
             NEW ITEM
           </Button>
-          <Button className="flex-1">BUY NOW</Button>
+          <a
+            className="flex-1 font-mono inline-flex items-center justify-center px-4 py-2 text-white hover:cursor-pointer border-2 border-white"
+            href={link}
+            target="_blank"
+          >
+            BUY NOW
+          </a>
         </div>
       </div>
     </div>
