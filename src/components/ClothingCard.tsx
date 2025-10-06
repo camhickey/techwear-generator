@@ -34,7 +34,9 @@ export function ClothingCard({
           <h3 className="font-semibold text-white line-clamp-1 transition-colors">
             {name}
           </h3>
-          <span className="font-bold text-white text-sm">${price / 100}</span>
+          <span className="font-bold text-white text-sm">
+            ${(price / 100).toFixed(2)}
+          </span>
         </div>
         <div className="flex gap-2">
           <Button className="flex-1" onClick={onReload} disabled={isReloading}>
