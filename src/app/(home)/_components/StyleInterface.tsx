@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { ClothingColor, ClothingStyle } from "@/lib/supabase/types";
-import { Button, OutfitModal } from "@/components";
-import { ColorPicker } from "@/app/(home)/_components";
+import { Button } from "@/components";
+import { ColorPicker, OutfitModal } from "@/app/(home)/_components";
 import { styleConfigs } from "@/app/_config/styleConfig";
 
 type StyleInterfaceProps = {

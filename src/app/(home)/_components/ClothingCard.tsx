@@ -5,8 +5,7 @@ export type ClothingCardProps = {
   link: string;
   image: string;
   price: number;
-  onReload: () => void; // optional reload handler
-  isReloading?: boolean; // optional spinner indicator
+  onReload: () => void;
 };
 
 export function ClothingCard({
@@ -15,19 +14,11 @@ export function ClothingCard({
   image,
   price,
   onReload,
-  isReloading = false,
 }: ClothingCardProps) {
   return (
-    <div className="flex flex-col bg-black border-2 border-white overflow-hidden">
-      {/* Image */}
+    <div className="flex flex-col bg-black overflow-hidden">
       <div className="relative aspect-square bg-black overflow-hidden">
-        <img
-          src={image}
-          alt={name}
-          className={`w-full h-full object-cover transition-transform duration-300 ${
-            isReloading ? "opacity-50" : "opacity-100"
-          }`}
-        />
+        <img src={image} alt={name} className="w-full h-full object-cover" />
       </div>
       <div className="p-4 gap-2 flex flex-col justify-between flex-1">
         <div className="flex justify-between items-center">
@@ -39,7 +30,7 @@ export function ClothingCard({
           </span>
         </div>
         <div className="flex gap-2">
-          <Button className="flex-1" onClick={onReload} disabled={isReloading}>
+          <Button className="flex-1" onClick={onReload}>
             NEW ITEM
           </Button>
           <a
