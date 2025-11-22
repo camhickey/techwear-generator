@@ -8,9 +8,10 @@ import { styleConfigs } from "@/app/_config/styleConfig";
 
 type StyleInterfaceProps = {
   style: ClothingStyle;
+  onBack: () => void;
 };
 
-export function StyleInterface({ style }: StyleInterfaceProps) {
+export function StyleInterface({ style, onBack }: StyleInterfaceProps) {
   const ModelComponent = styleConfigs[style].Model;
   const colors: Record<ClothingColor, string> = {
     black: "#000000",
@@ -30,7 +31,7 @@ export function StyleInterface({ style }: StyleInterfaceProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="max-h-screen flex flex-col p-4 bg-[#777777]">
+    <div className="h-screen flex flex-col p-4 bg-[#777777]">
       <div className="flex-shrink-0 w-full max-w-md mx-auto">
         <ColorPicker
           colors={colors}
@@ -38,7 +39,7 @@ export function StyleInterface({ style }: StyleInterfaceProps) {
           onSelect={setSelectedColor}
         />
       </div>
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center overflow-hidden">
         <ModelComponent
           headwearColor={headwearColor ? colors[headwearColor] : null}
           onHeadwearColorChange={() => setHeadwearColor(selectedColor)}
@@ -59,13 +60,18 @@ export function StyleInterface({ style }: StyleInterfaceProps) {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
       />
-      <Button
-        disabled={!CAN_GET_OUTFIT}
-        className="flex-1"
-        onClick={() => setIsModalOpen(true)}
-      >
-        {CAN_GET_OUTFIT ? "GET OUTFIT" : "SELECT CLOTHING"}
-      </Button>
+      <div className="flex flex-row gap-4">
+        <Button className="w-full" onClick={onBack}>
+          BACK
+        </Button>
+        <Button
+          className="w-full"
+          disabled={!CAN_GET_OUTFIT}
+          onClick={() => setIsModalOpen(true)}
+        >
+          {CAN_GET_OUTFIT ? "GET OUTFIT" : "SELECT CLOTHING"}
+        </Button>
+      </div>
     </div>
   );
 }

@@ -16,7 +16,7 @@ export const StyleCard = ({ style, onClick }: StyleCardProps) => {
   return (
     <div
       onClick={onClick}
-      className="relative flex-1 overflow-hidden group cursor-pointer animate-in fade-in duration-300"
+      className="relative h-screen snap-start md:flex-1 overflow-hidden group cursor-pointer animate-in fade-in duration-300"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
