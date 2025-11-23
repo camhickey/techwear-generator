@@ -21,10 +21,10 @@ export function ColorPicker({
           key={name}
           onClick={() => onSelect(name as ClothingColor)}
           style={{ backgroundColor: hex }}
-          className={`w-10 h-10 rounded-full hover:cursor-pointer transition-transform 
+          className={`w-10 h-10 rounded-full hover:cursor-pointer transition-transform
             ${
               selectedColor === name
-                ? "ring-2 ring-amber-600 scale-110"
+                ? "drop-shadow-[0_0_6px_rgba(255,140,0,9)] scale-110 ring-2 ring-[rgba(255,140,0,0.5)]"
                 : "scale-100"
             }`}
         />

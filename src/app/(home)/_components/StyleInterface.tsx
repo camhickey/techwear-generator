@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ClothingColor, ClothingStyle } from "@/lib/supabase/types";
+import { type ClothingColor, type ClothingStyle } from "@/lib/supabase/types";
 import { Button } from "@/components";
 import { ColorPicker, OutfitModal } from "@/app/(home)/_components";
 import { styleConfigs } from "@/app/_config/styleConfig";
@@ -14,12 +14,12 @@ type StyleInterfaceProps = {
 export function StyleInterface({ style, onBack }: StyleInterfaceProps) {
   const ModelComponent = styleConfigs[style].Model;
   const colors: Record<ClothingColor, string> = {
-    black: "#000000",
-    gray: "#2d2d2d",
+    black: "#0A0A0A",
+    gray: "#3A3A3A",
     white: "#F4ECD6",
-    blue: "#161B33",
-    green: "#11270B",
-    brown: "#4C2719",
+    blue: "#24345B",
+    green: "#1E4515",
+    brown: "#6B3A25",
   };
   const [selectedColor, setSelectedColor] = useState<ClothingColor>("black");
   const [headwearColor, setHeadwearColor] = useState<ClothingColor>();
@@ -31,7 +31,7 @@ export function StyleInterface({ style, onBack }: StyleInterfaceProps) {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="h-screen flex flex-col p-4 bg-[#777777]">
+    <div className="flex flex-col p-4 bg-[#131313]">
       <div className="flex-shrink-0 w-full max-w-md mx-auto">
         <ColorPicker
           colors={colors}

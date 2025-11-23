@@ -37,7 +37,7 @@ export const OutdoorsEffect = ({ isHovered }: EffectProps) => {
       />
 
       {/* Animated Sand Particle Storm - Only on hover */}
-      {[...Array(250)].map((_, i) => {
+      {[...Array(50)].map((_, i) => {
         const size = Math.random() * 3 + 2;
         const layer = Math.floor(i / 33);
         const speed = (3 - layer) * 5;
