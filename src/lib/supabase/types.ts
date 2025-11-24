@@ -1,4 +1,4 @@
-import { Database } from "./database.types.ts";
+import { Database } from "./database.types";
 
 export type ClothingColor = Database["public"]["Enums"]["clothing_color"];
 export type ClothingArticle = Database["public"]["Enums"]["clothing_article"];
