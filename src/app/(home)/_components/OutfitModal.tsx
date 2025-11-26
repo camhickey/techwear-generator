@@ -1,5 +1,9 @@
 import { useEffect, useRef } from "react";
-import { ClothingCard } from "./ClothingCard";
+import {
+  ClothingCard,
+  ClothingCardEmpty,
+  ClothingCardSkeleton,
+} from "@/app/(home)/_components";
 import {
   type ClothingArticle,
   type ClothingColor,
@@ -53,6 +57,13 @@ export function OutfitModal({
 
   if (!isOpen) return null;
 
+  const colorMap = {
+    headwear: headwearColor,
+    top: topColor,
+    pants: pantsColor,
+    footwear: footwearColor,
+  };
+
   return (
     <div
       className="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
@@ -60,7 +71,7 @@ export function OutfitModal({
     >
       <div
         ref={modalRef}
-        className="bg-black p-6 gap-4 border-2 border-white w-[90vw] max-h-[90vh] relative flex flex-col"
+        className="bg-black p-6 gap-4 border-2 border-white w-[90vw] h-[90vh] relative flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center flex-none font-mono">
@@ -69,27 +80,29 @@ export function OutfitModal({
             CLOSE
           </button>
         </div>
-        <div className="overflow-auto hide-scrollbar flex-1">
+        <div className="overflow-auto flex-1">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {ARTICLES.map((article) => (
-              <ClothingCard
-                key={article}
-                {...items[article]}
-                isLoading={loading[article]}
-                article={article}
-                onReload={() =>
-                  fetchItem(
-                    article,
-                    {
-                      headwear: headwearColor,
-                      top: topColor,
-                      pants: pantsColor,
-                      footwear: footwearColor,
-                    }[article]
-                  )
-                }
-              />
-            ))}
+            {ARTICLES.map((article) => {
+              const item = items[article];
+              const isLoading = loading[article];
+              const hasItem =
+                item &&
+                item.name &&
+                item.link &&
+                item.image &&
+                item.price !== undefined;
+              if (isLoading)
+                return <ClothingCardSkeleton key={article} article={article} />;
+              if (!hasItem)
+                return <ClothingCardEmpty key={article} article={article} />;
+              return (
+                <ClothingCard
+                  key={article}
+                  {...item}
+                  onReload={() => fetchItem(article, colorMap[article])}
+                />
+              );
+            })}
           </div>
         </div>
       </div>
